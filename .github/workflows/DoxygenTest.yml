@@ -6,7 +6,7 @@ on:
     branches: [main, develop] # Trigger on pull requests to these branches
 jobs:
   build:
-    runs-on: atc-ubuntu-latest 
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
