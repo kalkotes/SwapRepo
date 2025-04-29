@@ -1,0 +1,40 @@
+name: Doxygen Documentation
+on:
+  push:
+    branches: [main, develop] # Trigger on pushes to these branches
+  pull_request:
+    branches: [main, develop] # Trigger on pull requests to these branches
+jobs:
+  build:
+    runs-on: atc-ubuntu-latest 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Doxygen
+        run: sudo apt-get update && sudo apt-get install -y doxygen graphviz # Install Doxygen and Graphviz
+
+      - name: Configure Doxygen (Optional, if needed)
+        run: |
+          # Create a Doxyfile if you don't have one
+          if [ ! -f Doxyfile ]; then
+            doxygen -g Doxyfile
+            # Customize Doxyfile here (e.g., sed, etc.)
+            # Example: sed -i 's/PROJECT_NAME\s*=\s*.*/PROJECT_NAME = MyProject/' Doxyfile
+          fi
+
+      - name: Generate Doxygen documentation
+        run: doxygen Doxyfile
+
+      - name: Upload documentation artifact (Recommended)
+        uses: actions/upload-artifact@v3
+        with:
+          name: doxygen-docs
+          path: html # Or the directory where Doxygen outputs the HTML files
+
+      # Optional: Deploy the documentation (e.g., to GitHub Pages)
+      # - name: Deploy to GitHub Pages
+      #   uses: actions/deploy-pages@v1 # Or a similar action
+      #   with:
+      #     artifact-dir: html
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
