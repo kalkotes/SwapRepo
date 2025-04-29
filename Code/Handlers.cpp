@@ -25,7 +25,7 @@ extern DLLAPI int CUSTOM_register_extension(int* decision, va_list argc)
 
 	/*************************************************************************************
 	Function Name         : Replace_TargetAttchment_with_NewRev
-	Function Description  : On the basis of newly created Minor revision handler will replace Target attachment with new Minor revision, Major Rev not allowed.
+	Function Description  : On the basis of newly created Minor revision handler will replace Target attachment with new Minor revision, Major Rev will not allowed.
 
 
 
