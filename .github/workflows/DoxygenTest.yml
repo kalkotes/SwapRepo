@@ -27,7 +27,7 @@ jobs:
         run: doxygen Doxyfile
 
       - name: Upload documentation artifact (Recommended)
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: doxygen-docs
           path: html # Or the directory where Doxygen outputs the HTML files
